@@ -21,3 +21,5 @@ makedocs(;
         "Function Reference" => "allfunctions.md",
     ],
 )
+
+deploydocs(; repo = "github.com/tudarsm/CARS.jl")
