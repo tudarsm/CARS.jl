@@ -27,4 +27,4 @@ CARS.jl is a library-based fitting algorithm for coherent anti-Stokes Raman spec
 - Single Pump CARS is not directly supported at the moment. Simply pass the same library twice (as Single-Pump is actually a special case of Dual-Pump) to the fit/simulation to workaround this limitation. This is likely to be resolved in a future version but does not have the highest priority.
 
 ## Documentation
-[![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://tudarsm.github.io/CARS.jl/stable/)
+[![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://tudarsm.github.io/CARS.jl/dev/)
