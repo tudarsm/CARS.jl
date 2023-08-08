@@ -3,7 +3,7 @@ CurrentModule = CARS
 ```
 
 # CARS.jl
-Welcome. This is [CARS.jl](https://git.rwth-aachen.de/tuda_rsm/cross-sections/cars/jcars/cars.jl).
+Welcome. This is [CARS.jl](https://github.com/tudarsm/cars.jl).
 If you haven't read the publication yet, please do so. It will answer many of the questions that you may have about what this code does and why.
 
 ## What is CARS.jl?
