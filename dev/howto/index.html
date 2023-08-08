@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>How to... · CARS.jl</title><script data-outdated-warner src="../assets/warner.js"></script><link rel="canonical" href="https://tuda_rsm.pages.rwth-aachen.de/cross-sections/cars/jcars/cars.jl/howto/"/><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.039/juliamono-regular.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.11/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../">CARS.jl</a></span></div><form class="docs-search" action="../search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../">Home</a></li><li><a class="tocitem" href="../installation/">Installation</a></li><li><a class="tocitem" href="../examples/">Example Usage</a></li><li class="is-active"><a class="tocitem" href>How to...</a><ul class="internal"><li><a class="tocitem" href="#...-cite-CARS.jl"><span>... cite CARS.jl</span></a></li><li><a class="tocitem" href="#...-contribute-to-CARS.jl"><span>... contribute to CARS.jl</span></a></li><li><a class="tocitem" href="#...-build-the-docs-locally-before-pushing-to-the-repo"><span>... build the docs locally before pushing to the repo</span></a></li><li><a class="tocitem" href="#...-add-more-species"><span>... add more species</span></a></li><li><a class="tocitem" href="#...-add-fitting-parameters"><span>... add fitting parameters</span></a></li><li><a class="tocitem" href="#...-add-new-preprocessing"><span>... add new preprocessing</span></a></li><li><a class="tocitem" href="#...-implement-efficient-handling-of-Duals-for-the-gradient-based-fitter"><span>... implement efficient handling of Duals for the gradient based fitter</span></a></li><li><a class="tocitem" href="#...-benchmark-and-validate-your-implementation"><span>... benchmark and validate your implementation</span></a></li></ul></li><li><a class="tocitem" href="../allfunctions/">Function Reference</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>How to...</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>How to...</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/tudarsm/CARS.jl/blob/master/docs/src/howto.md#" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="How-to-..."><a class="docs-heading-anchor" href="#How-to-...">How to ...</a><a id="How-to-...-1"></a><a class="docs-heading-anchor-permalink" href="#How-to-..." title="Permalink"></a></h1><p>This section gives hints for developers on how to extend functionality to CARS.jl and how to perform typical tasks</p><h2 id="...-cite-CARS.jl"><a class="docs-heading-anchor" href="#...-cite-CARS.jl">... cite CARS.jl</a><a id="...-cite-CARS.jl-1"></a><a class="docs-heading-anchor-permalink" href="#...-cite-CARS.jl" title="Permalink"></a></h2><p>Currently, the publication is in submission process. Stay tuned for a bibtex key here.</p><h2 id="...-contribute-to-CARS.jl"><a class="docs-heading-anchor" href="#...-contribute-to-CARS.jl">... contribute to CARS.jl</a><a id="...-contribute-to-CARS.jl-1"></a><a class="docs-heading-anchor-permalink" href="#...-contribute-to-CARS.jl" title="Permalink"></a></h2><ul><li>Clone the repository</li><li>Open the root folder (the one containing <code>src/</code>) in VS Code with the Julia extension installed</li><li>Open a REPL with ALT+J+O (without releasing ALT)</li><li>Enter <code>] dev .</code> which activates the local repository for development</li><li>Start modifying, commit, push/create PR.</li></ul><h2 id="...-build-the-docs-locally-before-pushing-to-the-repo"><a class="docs-heading-anchor" href="#...-build-the-docs-locally-before-pushing-to-the-repo">... build the docs locally before pushing to the repo</a><a id="...-build-the-docs-locally-before-pushing-to-the-repo-1"></a><a class="docs-heading-anchor-permalink" href="#...-build-the-docs-locally-before-pushing-to-the-repo" title="Permalink"></a></h2><p>Open a command line and navigate to the <code>CARS.jl</code> folder and start julia:</p><pre><code class="language-console hljs">cd yourLocalCARS.jlFOLDER
+julia --project=docs/</code></pre><p>Then, in Julia, execute the following commands:</p><pre><code class="language-julia hljs">using Revise
+using Pkg;Pkg.develop(PackageSpec(path=pwd()));Pkg.instantiate();
+include(&quot;docs/make.jl&quot;)</code></pre><p>This will build the docs in the build directory. Never push this to the repository. It is in the .gitignore file for a reason. Documentations are published to Gitlab/Github pages after pushing to the repository. Leave the command window open and repeat the <code>include(&quot;docs/make.jl&quot;)</code> command to update the pages.</p><div class="admonition is-info"><header class="admonition-header">Note</header><div class="admonition-body"><p>The first run will probably be very slow. Subsequent runs are blazing fast.</p></div></div><p>To view the newly build documentation, I recommend to use Live Server addon by Ritwick Dey in VSCode. Right click on the index.html (in VSCode) and click Open with Live Server. Upon recreating the docs using the above method, the page automatically reloads.</p><h2 id="...-add-more-species"><a class="docs-heading-anchor" href="#...-add-more-species">... add more species</a><a id="...-add-more-species-1"></a><a class="docs-heading-anchor-permalink" href="#...-add-more-species" title="Permalink"></a></h2><p>In terms of how to generate theoretical susceptibilities, this is way beyond the scope of this documentation and in fact not the job of CARS.jl. If it is a simple diatomic molecule, check out DiaCARS.jl on how these are modelled. For more complex molecules, such as CO2, H2O, NH3, check the relevant literature or come up with your own idea. This is not trivial.</p><p>If you do have a model for the molecule you are interested in, it can be used in CARS.jl simply using the following:</p><pre><code class="language-julia hljs">using CARS
+import YourFancyMolecule
+
+# generate a function that is only depending on temperature
+yourfancymolecule(t) = YourFancyMolecule(t,yourmodelparameters,...)
+
+# generate the library (if it is the only species) by passing the function to generateLibrary
+T = 280:5:2000              # temperature range of interest
+library = generateLibrary(T,γc,yourfancymolecule)</code></pre><p>For this to work, the function has to return the following parameters in exactly that order:</p><pre><code class="language-julia hljs">struct MolParams
+    CHINR::Float64
+end
+
+function YourFancyMolecule(t,yourmodelparameters,...)
+
+    # do your simulation here
+
+    # molecularParameters is a struct with at least CHINR per molecule
+    # e.g. for nitrogen, the value is 8.5e-18 cm3/(erg*amagat)
+    # the value that has to be stored is 8.5 / NA * Molvol = 3.1635e-19 (note that the 1e-18 is omitted)
+    # NA = 6.022...e23
+    # Molvol = 2.2413e4
+    # check out DiaCARS.jl for reference
+    molecularParameters = MolParams(1.12345e-19)
+    return χR,χI,ω,species,molecularParameters      
+end
+</code></pre><h2 id="...-add-fitting-parameters"><a class="docs-heading-anchor" href="#...-add-fitting-parameters">... add fitting parameters</a><a id="...-add-fitting-parameters-1"></a><a class="docs-heading-anchor-permalink" href="#...-add-fitting-parameters" title="Permalink"></a></h2><p>To understand how CARS.jl interprets something as a fitting parameter, look at the <code>FitParams</code> struct:</p><pre><code class="language-julia hljs">Base.@kwdef mutable struct FitParams
+    T                          # Temperature as value
+    X::Dict{String,Any}        # Dictionary of Mole Fractions of resonant species
+    chiNR=0                      # Non-resonant signal of resonant species. No need to set this manually, will be filled with correct values automatically
+    chiB=8.5                     # Non-resonant susceptibility of the buffer gas    
+    AdditionalFrequencyOffset=0  # For DP CARS Spectra. Additional shift (to what&#39;s already in the library) of Pump region 2 relative to pump region 1
+    LineWidth::Dict{String,Any} # Dict of Laser linewidth(s), &quot;P1&quot; for pump region 1, &quot;P2&quot; for pump region 2
+    Instrumental=0             # Instrumental LineWidth of spectrometer
+    WavenumberPolynomial::Vector{Any}=[2200.,0.5,0.]     # Vector of polynomial parameter to fit the wavenumber axis, Syntax [a, b, c, ..] will be interpreted as a*x^1+b*x^2+c*x^3...
+    WavenumberShift=0          # Shift of calibrated wavenumber axis (zero order)
+    Spectra::SpectraStruct=SpectraStruct([0.],[0.],[0.],[0.],0,&quot;unknown&quot;)     # After fitting, this will contain the original experimental spectrum (after area normalization) along with the fit
+end</code></pre><p>Furthermore, fit parameters are defined at runtime by specifying a startingsolution as well as upper and lower bounds:</p><pre><code class="language-julia hljs">startingsolution = FitParams(T=800,X=Dict(&quot;N2&quot;=&gt;0.7,&quot;CO2&quot;=&gt;0.08),LineWidth=Dict(&quot;P1&quot;=&gt;0.2,&quot;P2&quot;=&gt;.7),AdditionalFrequencyOffset=0,chiB=19.74,Instrumental=1);
+lower=copy(startingsolution);upper=copy(startingsolution);
+lower.X[&quot;N2&quot;]=0.6
+upper.X[&quot;N2&quot;]=0.75</code></pre><p>When running in fitting mode, CARS.jl runs these three structs through <a href="../allfunctions/#CARS.vectorizeParams!-Tuple{FitParams, FitParams, FitParams, Tuple}"><code>vectorizeParams!</code></a> and identifies all fields that have a lower and upper bound <strong>differing</strong> from the starting solution as a fit parameter. It returns the starting value, lower and upper bound in a vector alongside a <code>loc</code> array which instructs the spectrum generator how to interpret that value, i.e. if it is temperature, mole fraction or another degree of freedom.</p><p>So in short, to add a new fit parameter, simply add it to the <a href="../allfunctions/#CARS.FitParams"><code>FitParams</code></a> struct and use it in  <a href="../allfunctions/#CARS.calcResidual-Union{Tuple{T}, Tuple{PreProcSpectrum, Any, FitParams, Any, Vararg{T, N} where N}} where T&lt;:Real"><code>calcResidual</code></a> or  <a href="../allfunctions/#CARS.generateSpectrum!-Tuple{FitParams, Vararg{Any, N} where N}"><code>generateSpectrum!</code></a>. Make sure that the added functionality can handle <code>FowardDiff.Dual</code>, i.e. <code>T&lt;:Real</code> datatypes for the input. Check out the next section for examples how to do that efficiently.</p><h2 id="...-add-new-preprocessing"><a class="docs-heading-anchor" href="#...-add-new-preprocessing">... add new preprocessing</a><a id="...-add-new-preprocessing-1"></a><a class="docs-heading-anchor-permalink" href="#...-add-new-preprocessing" title="Permalink"></a></h2><p>Recall how currently the scheme of loading and preprocessing works:</p><pre><code class="language-julia hljs">signal = load_spectra(&quot;./src/examples/data/210622A163.SPE&quot;)     # load the signal
+nr = load_spectra(&quot;./src/examples/data/210622A144.SPE&quot;)         # load the non-resonant signal (e.g. from Argon)
+preprocessed_signals = preprocess_spectra(signal,nr,[600 1000]) # preprocess using defaults</code></pre><p><a href="../allfunctions/#CARS.preprocess_spectra-Tuple{RawSpectra, RawSpectra, Any}"><code>preprocess_spectra</code></a> assumes the datatype <a href="../allfunctions/#CARS.RawSpectra"><code>RawSpectra</code></a> and returns an array of <a href="../allfunctions/#CARS.PreProcSpectrum"><code>PreProcSpectrum</code></a>. If you want to do fancier preprocessing, such as referencing the signal to single-shot non-resonant signals or different background removals, the only requirement is that the return value of your new preprocessing is also an array of <a href="../allfunctions/#CARS.PreProcSpectrum"><code>PreProcSpectrum</code></a></p><p>As a default, <code>PreProcSpectrum.w</code> can be <code>[1.]</code>, which disables noise weighting. <code>PreProcSpecttrum.ErrorCode</code> can be any value of type <code>Int8</code>. Only those spectra that have a value of <code>0</code> here will be evaluated.</p><h2 id="...-implement-efficient-handling-of-Duals-for-the-gradient-based-fitter"><a class="docs-heading-anchor" href="#...-implement-efficient-handling-of-Duals-for-the-gradient-based-fitter">... implement efficient handling of Duals for the gradient based fitter</a><a id="...-implement-efficient-handling-of-Duals-for-the-gradient-based-fitter-1"></a><a class="docs-heading-anchor-permalink" href="#...-implement-efficient-handling-of-Duals-for-the-gradient-based-fitter" title="Permalink"></a></h2><div class="admonition is-warning"><header class="admonition-header">Warning</header><div class="admonition-body"><p>This requires some experience with Julia and an understanding of how automatic mode differentiation works. Please make sure you understand what you are planning on doing before you actually do so. Benchmark and validate your implementation before including it in the production version! Before proceeding, read and understand the <a href="https://juliadiff.org/ForwardDiff.jl/stable/">documentation</a> of <a href="https://github.com/JuliaDiff/ForwardDiff.jl">ForwardDiff.jl</a> and <a href="https://jump.dev/JuMP.jl/stable/manual/nlp/#Common-mistakes-when-writing-a-user-defined-function">this section</a> of the JuMP documentation.</p></div></div><p>Ok. You now know the requirements of your method to accept <code>T&lt;:Real</code> datatypes and decided to include a new degree of freedom into either one of <a href="../allfunctions/#CARS.calcResidual-Union{Tuple{T}, Tuple{PreProcSpectrum, Any, FitParams, Any, Vararg{T, N} where N}} where T&lt;:Real"><code>calcResidual</code></a> or <a href="../allfunctions/#CARS.generateSpectrum!-Tuple{FitParams, Vararg{Any, N} where N}"><code>generateSpectrum!</code></a>. The need for some trickery really depends on how expensive the computation is. For example, if you just include a vertical shift with a constant number to the entire spectrum, the following is likely totaly fine:</p><pre><code class="language-julia hljs">function addVerticalShift!(spectrum:AbstractArray{T},shift::T) where {T&lt;:Real}
+    @. spectrum += shift
+end</code></pre><p>Note, that for efficiency, this already uses an inplace operation on the variable <code>spectrum</code>, as indicated by the exclamation point in the name of the function. The reason why this naive implementation is unproblematic, is that the sum of two duals is simply summing the value and partials independently. However, more complex functions that operate on multiple arrays, such as convolutions, it is not that straightforward. Using the default <code>DSP.conv()</code> method for example, does not work for Dual numbers. Also, using <code>@tturbo</code> or <code>@avxt</code> from the package <a href="https://github.com/JuliaSIMD/LoopVectorization.jl">LoopVectorizations.jl</a> does not allow using Duals directly. For an example on how to work around this issue, check out this implementation of <a href="../allfunctions/#CARS.fastLinearInt-Union{Tuple{K}, Tuple{V}, Tuple{T}, Tuple{R}, Tuple{AbstractArray{R, N} where N, AbstractArray{var&quot;#s45&quot;, N} where {var&quot;#s45&quot;&lt;:ForwardDiff.Dual{T, V, K}, N}, AbstractArray{var&quot;#s46&quot;, N} where {var&quot;#s46&quot;&lt;:AbstractFloat, N}}} where {R, T, V, K}"><code>fastLinearInt</code></a>:</p><pre><code class="language-julia hljs">function fastLinearInt(wlib::AbstractArray,data::AbstractArray{T},wexp::AbstractArray{T};extrap=false)  where {T&lt;:AbstractFloat} 
+    right,left,w = findNeighbours(wexp,wlib,extrap=extrap)
+    interpolated = @avxt @. (w)*data[left]+(1-w)*data[right]
+    return interpolated
+end
+
+function fastLinearInt(wlib::AbstractArray{R},data::AbstractArray{&lt;:ForwardDiff.Dual{T,V,K}},wexp::AbstractArray{&lt;:AbstractFloat};extrap=false)  where {R,T,V,K}  
+   # in this function data, is always of dual type
+   # wlib is dual type if wavenumber shift is fitted
+   # wexp is always float here, because dual case is handled in another implementation below
+   
+   # reinterpret values and partials
+   dataE = reinterpret(reshape, V, data)
+
+   # preallocate output array
+   out = Array{eltype(data)}(undef,length(wexp))
+   # and reinterpret it here to fill with data.
+   outE = reinterpret(reshape, V, out)
+
+   if R&lt;:ForwardDiff.Dual
+        wlibE = reinterpret(reshape,V,wlib)
+        # get index where wlibE has a partial derivative of 1.
+        idx = findlast(wlibE[:,1].==1.)
+        # remove the partials, we just need the wavenumber array for interpolation
+        wlibE = wlibE[1,:]
+   else
+        wlibE = wlib
+   end
+   
+   # find neighbors and weights
+   right,left,w,dw = findNeighbours(wexp,wlibE,extrap=extrap)
+
+   # interpolate values and partials
+   @tturbo for i in axes(dataE,1), j in axes(outE,2)
+        outE[i,j] = (w[j])*dataE[i,left[j]]+(1-w[j])*dataE[i,right[j]]
+   end
+
+   # special case: w depends on partial of wlib
+   # so if wlib is a Dual (ie. WavenumberShift is a FitParameter)
+   # account for the partial derivative
+    if R&lt;:ForwardDiff.Dual
+        for j in axes(outE,2)
+                outE[idx,j]=dw*dataE[1,left[j]]-dw*dataE[1,right[j]]
+        end
+    end
+
+   return out   # out has contents of outE!
+end</code></pre><p>Note a couple of things:</p><ul><li>The implementation makes use of <a href="https://docs.julialang.org/en/v1/manual/methods/">multiple dispatch</a> to decide when to use the method for interpolating an array of <code>Dual</code> or an array of <code>AbstractFloat</code>.</li><li>We reinterpret the array <code>data::AbstractArray{&lt;:ForwardDiff.Dual}</code> which essentially means, we can manipulate the values and partials of this array explicitly.</li><li>We prellocate the output <code>out</code> to be the same datatype as <code>data</code>, but with the new length determined by <code>wexp</code></li><li>The interpolation is done for both values and partials using this for-loop where the index <code>i</code> iterates over the values and partials and <code>j</code> is the wavenumber direction:</li></ul><pre><code class="language-julia hljs"># interpolate values and partials
+@tturbo for i in axes(dataE,1), j in axes(outE,2)
+    outE[i,j] = (w[j])*dataE[i,left[j]]+(1-w[j])*dataE[i,right[j]]
+end</code></pre><p>But: one of the partials is the partial derivative with respect to a number that <code>w</code> depends on because we use this function sometimes to fit a wavenumber shift which has an effect on the weights for the interpolation. If we look at the definition of <a href="../allfunctions/#CARS.findNeighbours-Tuple{Any, Any}"><code>findNeighbours</code></a>:</p><pre><code class="language-julia hljs">function findNeighbours(wexp,wlib;extrap=false)
+    r=1
+    qp = Array{Int32}(undef,length(wexp))
+    w = Array{Float64}(undef,length(wexp))
+    dw = wlib[2]-wlib[1]
+    # auto detect reversal
+    if wexp[2]&gt;wexp[1]
+        iterator = 1:length(wexp)
+    else
+        iterator = length(wexp):-1:1
+    end
+    for i in iterator
+        for j in r:length(wlib)
+            if wexp[i]&lt;wlib[j]
+                r=j
+                qp[i]=j
+                w[i]=(wlib[j]-wexp[i])/dw
+                break
+            else
+                qp[i]=length(wlib)
+                w[i]=0
+            end
+        end
+    end
+
+    if extrap
+        qp[qp.==1] .= 2
+    end
+    return qp,qp.-1,w,1/dw
+end</code></pre><p>and have a closer look at this line in the body of the for loop:</p><pre><code class="language-julia hljs">                w[i]=(wlib[j]-wexp[i])/dw</code></pre><p>we realize, that the derivative of <code>w</code> with respect to <code>wlib</code> (and thus to the wavenumber shift) is simply <code>1/dw</code>. We can use this to compute the partial derivative as a special case when interpolating our array <code>data</code> for cases where the wavenumber shift is fitted:</p><pre><code class="language-julia hljs">if R&lt;:ForwardDiff.Dual
+    for j in axes(outE,2)
+            outE[idx,j]=dw*dataE[1,left[j]]-dw*dataE[1,right[j]]
+    end
+end</code></pre><div class="admonition is-success"><header class="admonition-header">More References</header><div class="admonition-body"><p>This is, in the beginning, a little confusing. But it makes a night and day difference for computationally expensive operations. In this example, the speed up between using a naive linear interpolation based on <a href="https://github.com/JuliaMath/Interpolations.jl">Interpolations.jl</a> and this approach is about a factor of 30 when handling duals. If you would like to see more examples, check out <code>includes/convolutions.jl</code> or <code>includes/fit_spectra.jl</code>. Specifically <code>signalsummation!</code> provides a nice entry point for this way of handling partial derivatives semi-analytically.</p></div></div><div class="admonition is-success"><header class="admonition-header">Tip</header><div class="admonition-body"><p>Always have a fallback solution implemented, at least for verification of your implementation!</p></div></div><h2 id="...-benchmark-and-validate-your-implementation"><a class="docs-heading-anchor" href="#...-benchmark-and-validate-your-implementation">... benchmark and validate your implementation</a><a id="...-benchmark-and-validate-your-implementation-1"></a><a class="docs-heading-anchor-permalink" href="#...-benchmark-and-validate-your-implementation" title="Permalink"></a></h2><p>Since CARS.jl is all about efficiency, you might want to benchmark the adaptions or optimizations you were implementing. You can use the methods <a href="../allfunctions/#CARS.benchmarkGradient-Tuple{PreProcSpectrum, FitParams, FitParams, FitParams, Vararg{CARS.Library, N} where N}"><code>benchmarkGradient</code></a> and <a href="../allfunctions/#CARS.benchmarkValue-Tuple{PreProcSpectrum, FitParams, FitParams, FitParams, Vararg{CARS.Library, N} where N}"><code>benchmarkValue</code></a> for this, which take the same arguments as <a href="../allfunctions/#CARS.gradientFit-Tuple{PreProcSpectrum, FitParams, FitParams, FitParams, Vararg{CARS.Library, N} where N}"><code>gradientFit</code></a> and <a href="../allfunctions/#CARS.blackBoxFit-Tuple{PreProcSpectrum, FitParams, FitParams, FitParams, Vararg{CARS.Library, N} where N}"><code>blackBoxFit</code></a> without the options. For example, you can do the following:</p><pre><code class="language-julia hljs">startingsolution = FitParams(T=800.,X=Dict(&quot;N2&quot;=&gt;0.7,&quot;CO2&quot;=&gt;0.08,&quot;O2&quot;=&gt;0.1),LineWidth=Dict(&quot;P1&quot;=&gt;0.7,&quot;P2&quot;=&gt;.7),AdditionalFrequencyOffset=-1.,Instrumental=1.,WavenumberShift=-5);
+startingsolution.WavenumberPolynomial = [2260, 0.285, 0]
+lower=copy(startingsolution);upper=copy(startingsolution);
+lower.X[&quot;N2&quot;]=0.6
+upper.X[&quot;N2&quot;]=0.75
+lower.X[&quot;CO2&quot;]=0.0
+upper.X[&quot;CO2&quot;]=0.5
+lower.X[&quot;O2&quot;]=0.
+upper.X[&quot;O2&quot;]=0.5
+lower.T=300
+upper.T=2200
+lower.Instrumental = 0.5
+upper.Instrumental = 1.5
+lower.LineWidth[&quot;P1&quot;]=0.25
+upper.LineWidth[&quot;P1&quot;]=0.7
+lower.LineWidth[&quot;P2&quot;]=0.25
+upper.LineWidth[&quot;P2&quot;]=1.6
+lower.AdditionalFrequencyOffset = -5
+upper.AdditionalFrequencyOffset = 5
+lower.WavenumberPolynomial = [2258, 0.45, 0]
+upper.WavenumberPolynomial = [2263, 0.5, 0]
+lower.WavenumberShift =-6
+upper.WavenumberShift=1
+# run either this:
+@benchmark CARS.benchmarkGradient(spectra[1],startingsolution,lower,upper,lib1,lib2)
+# or this:
+@benchmark CARS.benchmarkValue(spectra[1],startingsolution,lower,upper,lib1,lib2)</code></pre><div class="admonition is-success"><header class="admonition-header">Validate results</header><div class="admonition-body"><p>The functions return the gradient or value respectively. Use this to ensure that your implementation is done correctly by comparing the results of your optimized implementation and a known reference.</p></div></div></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../examples/">« Example Usage</a><a class="docs-footer-nextpage" href="../allfunctions/">Function Reference »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.15 on <span class="colophon-date" title="Tuesday 8 August 2023 07:50">Tuesday 8 August 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

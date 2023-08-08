@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Example Usage · CARS.jl</title><script data-outdated-warner src="../assets/warner.js"></script><link rel="canonical" href="https://tuda_rsm.pages.rwth-aachen.de/cross-sections/cars/jcars/cars.jl/examples/"/><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.039/juliamono-regular.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.11/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../">CARS.jl</a></span></div><form class="docs-search" action="../search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../">Home</a></li><li><a class="tocitem" href="../installation/">Installation</a></li><li class="is-active"><a class="tocitem" href>Example Usage</a><ul class="internal"><li><a class="tocitem" href="#Generate-Libraries"><span>Generate Libraries</span></a></li><li><a class="tocitem" href="#Simulate-Single-Spectra"><span>Simulate Single Spectra</span></a></li><li><a class="tocitem" href="#Fit-Experimental-Spectra"><span>Fit Experimental Spectra</span></a></li></ul></li><li><a class="tocitem" href="../howto/">How to...</a></li><li><a class="tocitem" href="../allfunctions/">Function Reference</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>Example Usage</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Example Usage</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/tudarsm/CARS.jl/blob/master/docs/src/examples.md#" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="Examples"><a class="docs-heading-anchor" href="#Examples">Examples</a><a id="Examples-1"></a><a class="docs-heading-anchor-permalink" href="#Examples" title="Permalink"></a></h1><p>This section covers typical examples. More can be found in the <code>src/examples</code> directory of this repository. Just copy them somewhere, <a href="../installation/">install the required packages</a> and run the code.</p><h2 id="Generate-Libraries"><a class="docs-heading-anchor" href="#Generate-Libraries">Generate Libraries</a><a id="Generate-Libraries-1"></a><a class="docs-heading-anchor-permalink" href="#Generate-Libraries" title="Permalink"></a></h2><h3 id="dp_ss_example"><a class="docs-heading-anchor" href="#dp_ss_example">Dual Pump, Single Species per Pump Region</a><a id="dp_ss_example-1"></a><a class="docs-heading-anchor-permalink" href="#dp_ss_example" title="Permalink"></a></h3><p>In this example, we use DiaCARS to simulate Dual-Pump CARS spectra containing only N2 and O2:</p><pre><code class="language-julia hljs">using CARS
+import DiaCARS
+## Dual Pump N2/O2-CARS
+ROI1 = [2200 2700]              # Pump region 1
+FrequencyOffset = 985;          # Offset for pump region two. Pump1-FrequencyOffset=Region2
+ROI2 = ROI1 .- FrequencyOffset  # Pump region 2
+T=280:20:2400                   # Temperature range for library
+γc = 0.1                        # preconvolution kernel
+ωres = 5e-4                     # resolution of theoretical susceptibility
+n2_pump1(t) = DiaCARS.simulateTheoreticalSusceptibility(t,&quot;N2&quot;,1,&quot;I&quot;,ROI1,ωres) # N2, Pump 1
+o2_pump2(t) = DiaCARS.simulateTheoreticalSusceptibility(t,&quot;O2&quot;,1,&quot;I&quot;,ROI2,ωres) # O2, Pump 2
+
+pump1_library = generateLibrary(T,γc,n2_pump1); 
+pump2_library = generateLibrary(T,γc,o2_pump2); </code></pre><p>You should see an output like this:</p><pre><code class="language-julia hljs">Generating a library for species N2 in range 2200.0-2700.0 cm-1
+Array size before compression: 1000001 (Original resolution: 0.0005 cm-1)
+Array size after compression: 25000 (New resolution: 0.020000000298023225 cm-1)
+Number of required complex cross-terms: 0
+Estimated library size: 31.0 MB
+
+100.0%┣████████████████████████████████┫ 107/107 [00:07&lt;00:00, 15it/s]
+
+Generating a library for species O2 in range 1215.0-1715.0 cm-1
+Array size before compression: 1000001 (Original resolution: 0.0005 cm-1)
+Array size after compression: 25000 (New resolution: 0.020000000298023225 cm-1)
+Number of required complex cross-terms: 0
+Estimated library size: 31.0 MB
+
+100.0%┣████████████████████████████████┫107/107 [00:07&lt;00:00, 14it/s]</code></pre><h3 id="Generate-Multi-Species-Libraries"><a class="docs-heading-anchor" href="#Generate-Multi-Species-Libraries">Generate Multi-Species Libraries</a><a id="Generate-Multi-Species-Libraries-1"></a><a class="docs-heading-anchor-permalink" href="#Generate-Multi-Species-Libraries" title="Permalink"></a></h3><pre><code class="language-julia hljs">using CARS
+import DiaCARS
+import CO2CARS
+## Dual Pump N2/O2-CARS
+ROI1 = [2200 2700]              # Pump region 1
+FrequencyOffset = 985;          # Offset for pump region two. Pump1-FrequencyOffset=Region2
+ROI2 = ROI1 .- FrequencyOffset  # Pump region 2
+T=280:20:2400                   # Temperature range for library
+γc = 0.1                        # preconvolution kernel
+ωres = 5e-4                     # resolution of theoretical susceptibility
+n2_pump1(t) = DiaCARS.simulateTheoreticalSusceptibility(t,&quot;N2&quot;,1,&quot;I&quot;,ROI1,ωres) # N2, Pump 1
+o2_pump2(t) = DiaCARS.simulateTheoreticalSusceptibility(t,&quot;O2&quot;,1,&quot;I&quot;,ROI2,ωres) # O2, Pump 2
+co2_pump2(t) = CO2CARS.simulateTheoreticalSusceptibility(t,1,ROI2,ωres)         # CO2, Pump 2
+
+pump1_library = generateLibrary(T,γc,n2_pump1); 
+pump2_library = generateLibrary(T,γc,o2_pump2,co2_pump2); # Pass as many species here as you like</code></pre><h2 id="Simulate-Single-Spectra"><a class="docs-heading-anchor" href="#Simulate-Single-Spectra">Simulate Single Spectra</a><a id="Simulate-Single-Spectra-1"></a><a class="docs-heading-anchor-permalink" href="#Simulate-Single-Spectra" title="Permalink"></a></h2><p>Generating spectra is done with <code>generateSpectrum!()</code> together with the <code>FitParams</code> struct and the libraries. This struct contains all physical parameters required for simulating a spectrum and will also be used to provide starting solutions as well as lower and upper bounds for the fitting process later. For this example, use the libraries generated in <a href="#dp_ss_example">this example</a>.</p><h3 id="Single-Pump"><a class="docs-heading-anchor" href="#Single-Pump">Single Pump</a><a id="Single-Pump-1"></a><a class="docs-heading-anchor-permalink" href="#Single-Pump" title="Permalink"></a></h3><p>As stated in the <a href="../#limitations">limitations</a>, single pump spectra are not directly supported yet. But we can workaround this by acknowleding that single-pump CARS is the same as dual-pump CARS with the same region of interest. Simply pass the <code>pump1_library</code> twice to the functions for generating or fitting a spectrum. Make sure to use the same linewidths for both pumping regions.</p><pre><code class="language-julia hljs">exp_params = FitParams(T=2000,X=Dict(&quot;N2&quot;=&gt;0.7,),LineWidth=Dict(&quot;P1&quot;=&gt;0.7,&quot;P2&quot;=&gt;0.7),AdditionalFrequencyOffset=0,chiB=19.74,Instrumental=1);
+ωE,IE = generateSpectrum!(exp_params,pump1_library,pump1_library)
+plotSpec(ωE,IE)</code></pre><h3 id="Dual-Pump"><a class="docs-heading-anchor" href="#Dual-Pump">Dual Pump</a><a id="Dual-Pump-1"></a><a class="docs-heading-anchor-permalink" href="#Dual-Pump" title="Permalink"></a></h3><pre><code class="language-julia hljs">exp_params = FitParams(T=2000,X=Dict(&quot;N2&quot;=&gt;0.7,&quot;O2&quot;=&gt;0.2),LineWidth=Dict(&quot;P1&quot;=&gt;0.2,&quot;P2&quot;=&gt;1),AdditionalFrequencyOffset=0,chiB=19.74,Instrumental=1);
+ωE,IE = generateSpectrum!(exp_params,pump1_library,pump2_library)
+plotSpec(ωE,IE)</code></pre><h2 id="Fit-Experimental-Spectra"><a class="docs-heading-anchor" href="#Fit-Experimental-Spectra">Fit Experimental Spectra</a><a id="Fit-Experimental-Spectra-1"></a><a class="docs-heading-anchor-permalink" href="#Fit-Experimental-Spectra" title="Permalink"></a></h2><div class="admonition is-danger"><header class="admonition-header">Danger</header><div class="admonition-body"><p>Create simulated spectra for this example to avoid dependence on non public CO2CARS.jl</p></div></div><p>Supplied in the <code>src/examples/data</code> directory are two files:</p><ul><li><code>210622A163.SPE</code> contains N2/CO2 CARS spectra</li><li><code>210622A144.SPE</code> is the non-resonant signal measured before the experiment</li></ul><p>These samples were recorded at 20 Hz with intermittent capturing of the background for subtraction.</p><p>At first, we load the relevant modules:</p><pre><code class="language-julia hljs">using CARS
+using Plots
+import DiaCARS
+import CO2CARS</code></pre><p>Then, we load the data and plot it for visualization:</p><pre><code class="language-julia hljs">signal = load_spectra(&quot;./src/examples/data/210622A163.SPE&quot;)
+nr = load_spectra(&quot;./src/examples/data/210622A144.SPE&quot;)     
+l = @layout [a b;c d]
+p1=plot(signal.I)
+p2=plot(nr.I)
+p3=plot(signal.BG)
+p4=plot(nr.BG)
+plot(p1,p2,p3,p4,layout=l,legend=:none)</code></pre><p>Afterwards, we can preprocess the signal which involves background correction with the intermittently recorded background, normalization to the non-resonant background and error checking. For the latter, CARS.jl has reasonable defaults but allows for fine grained control to exclude spectra with too high or too low signal counts and detection of breakdowns. The region of interest <code>[600 1000]</code> in pixel units is used to crop out the desired spectral region.</p><div class="admonition is-info"><header class="admonition-header">Note</header><div class="admonition-body"><p>All spectra are normalized to unity area in the region of interest.</p></div></div><pre><code class="language-julia hljs">preprocessed_signals = preprocess_spectra(signal,nr,[600 1000];errorCriteria=ErrorCriteria(max_signal=64000,min_signal=1000,breakdown_threshold=1000,breakdown_location=200))
+showErrorCodes(preprocessed_signals)
+# show the preprocessed spectra
+plot(preprocessed_signals)</code></pre><p><a href="../allfunctions/#CARS.preprocess_spectra-Tuple{RawSpectra, RawSpectra, Any}"><code>preprocess_spectra</code></a> returns an array of <a href="../allfunctions/#CARS.PreProcSpectrum"><code>PreProcSpectrum</code></a> containing the preprocessed signals, a vector that can be used for residual weighting during the fit, the ErrorCode and the original area under the spectrum.</p><p>If desired, a noise model can be used to extract the weights for the residual used during the fit to increase precision and accuracy. Check out <a href="../allfunctions/#CARS.noiseModel!-Tuple{Symbol, Vararg{Any, N} where N}"><code>noiseModel!</code></a> for possible options:</p><pre><code class="language-julia hljs">noiseModel!(:argon,preprocessed_signals,nr,[600 1000])</code></pre><p>Now we need to generate the libraries:</p><pre><code class="language-julia hljs">ROI1 = [2240 2460]                              # Define Region of Interest for Pump 1
+T = 280:20:2400                                 # Temperature range for which the library is created
+FrequencyOffset = 985                           # Frequency Offset between Pump 1 and Pump 2
+ROI2 = ROI1 .- FrequencyOffset                  # Define Region of Interest for Pump 2
+γc = 0.1                                        # preconvolution kernel. has to be smaller than expected linewidth
+ωres = 7e-4                                     # resolution for computation of theoretical susceptibility. has to be equal for all species in a given pumping region.
+# Define short handles to functions that generate the desired species&#39; theoretical susceptibilities
+# These basically set everything fixed with the exception of temperature:
+n2(t) = DiaCARS.simulateTheoreticalSusceptibility(t,&quot;N2&quot;,1,&quot;I&quot;,ROI1,ωres)     # N2, Pump 1
+co2(t) = CO2CARS.simulateTheoreticalSusceptibility(t,1,ROI2,ωres)             # CO2, Pump 2
+# generate the libraries
+lib1 = generateLibrary(T,γc,n2)    # Create library for pumping region 1 containing N2
+lib2 = generateLibrary(T,γc,co2)   # ... and pumping region2 containing CO2
+lib2org = deepcopy(lib2)
+## hack CO2 model: CARSFT model has severely wrong amplitudes
+factor = 1.5
+lib2.χM = lib2org.χM * factor^2
+lib2.χR = lib2org.χR * factor
+lib2.χI = lib2org.χI * factor</code></pre><p>Now we can start fitting. As proposed in the publication, it makes sense to determine the instrumental parameters on a spectrum recorded at known conditions or at least conditions, that are steady and allow for averaging out the noise. </p><pre><code class="language-julia hljs">Is = mean(preprocessed_signals)   # mean spectrum, disables noise weighting</code></pre><p>CARS.jl is able to fit a second order polynomial to the data, given a decent starting solution which can be extracted by plotting the data and a simulation under approximated/guessed conditions:</p><pre><code class="language-julia hljs">display(plot(Is))     # plot the mean experimental spectrum
+sim = FitParams(T=1000,X=Dict(&quot;N2&quot;=&gt;0.7,&quot;CO2&quot;=&gt;0.05),LineWidth=Dict(&quot;P1&quot;=&gt;0.2,&quot;P2&quot;=&gt;.7),Instrumental=1)  
+ωE,IE = generateSpectrum!(sim,lib1,lib2);
+display(plot(ωE,IE))  # plot the simulated spectrum</code></pre><p>Now pick two points you would like to closely match pixels to wavenumbers. It does not have to be perfect, we just need a starting solution for the fit. Make sure to just use points from a single pumping region. If your frequency offset is not correctly determined, you will get a bad starting solution. In addition to the points, you need to pass an example spectrum to the function in order to be able to invert the polynomial when converting wavelength to wavenumber.</p><pre><code class="language-julia hljs">wavenumberpolynomial = getWavenumberPolynomial(Is.I,(303,2302),(211,2328),303)</code></pre><p>Now we need to provide a startingsolution, including the generated starting solution for the wavenumberpolynomial:</p><pre><code class="language-julia hljs">startingsolution = FitParams(T=800,X=Dict(&quot;N2&quot;=&gt;0.7,&quot;CO2&quot;=&gt;0.08),LineWidth=Dict(&quot;P1&quot;=&gt;0.2,&quot;P2&quot;=&gt;.7),AdditionalFrequencyOffset=0,chiB=19.74,Instrumental=1);
+startingsolution.WavenumberPolynomial = wavenumberpolynomial</code></pre><p>To specify, which values are to be fitted, we need to provide lower and upper bounds for the desired parameter. CARS.jl interprets the parameter it is supposed to use for fitting by detecting if the lower and upper bounds differ from the starting solution. If the value is the same, it will not be fitted. If it is not, it will be used as a fit parameter.</p><pre><code class="language-julia hljs">startingsolution = FitParams(T=800,X=Dict(&quot;N2&quot;=&gt;0.7,&quot;CO2&quot;=&gt;0.08),LineWidth=Dict(&quot;P1&quot;=&gt;0.2,&quot;P2&quot;=&gt;.7),AdditionalFrequencyOffset=0,chiB=19.74,Instrumental=1);
+startingsolution.WavenumberPolynomial = wavenumberpolynomial
+lower=copy(startingsolution);upper=copy(startingsolution);
+# define lower and upper bounds
+# set bounds fairly widely for first fit
+lower.X[&quot;N2&quot;]=0.6
+upper.X[&quot;N2&quot;]=0.75
+lower.X[&quot;CO2&quot;]=0.02
+upper.X[&quot;CO2&quot;]=0.5
+lower.T = 300
+upper.T = 2400
+lower.Instrumental = 0.5
+upper.Instrumental = 1.5
+lower.LineWidth[&quot;P1&quot;]=0.2
+upper.LineWidth[&quot;P1&quot;]=0.5
+lower.LineWidth[&quot;P2&quot;]=0.2
+upper.LineWidth[&quot;P2&quot;]=1.6
+lower.AdditionalFrequencyOffset = -2
+upper.AdditionalFrequencyOffset = 2
+startingsolution.WavenumberPolynomial = wavenumberpolynomial
+# choosing the bounds of the wavenumber polynomial requires some fiddling in the beginning
+# a good starting point is +- 4 cm-1 for the first element and +- 10% for the second value.
+# the second order term (last element of the array) should be small in the beginning and only
+# increased if the fit hits one of the bounds. start with +- 1e-5
+lower.WavenumberPolynomial = [2270, 0.26, -1e-5]
+upper.WavenumberPolynomial = [2278, 0.3, 1e-5]</code></pre><p>Great. Now we have the libraries, a reference spectrum that we would like to fit and specified the starting solution and the fit parameter bounds. Let&#39;s get to it! CARS.jl provides three mechanisms for fitting:</p><ul><li><a href="../allfunctions/#CARS.blackBoxFit-Tuple{PreProcSpectrum, FitParams, FitParams, FitParams, Vararg{CARS.Library, N} where N}"><code>blackBoxFit</code></a> uses <a href="https://github.com/robertfeldt/BlackBoxOptim.jl">BlackBoxOptim.jl</a> to do a gradient-free optimization.</li><li><a href="../allfunctions/#CARS.gradientFit-Tuple{PreProcSpectrum, FitParams, FitParams, FitParams, Vararg{CARS.Library, N} where N}"><code>gradientFit</code></a> uses <a href="https://jump.dev/JuMP.jl/stable/">JuMP</a>+<a href="https://github.com/jump-dev/Ipopt.jl">Ipopt</a> to do a gradient-based optimization.</li><li><a href="../allfunctions/#CARS.combinedFit-Tuple{PreProcSpectrum, FitParams, FitParams, FitParams, Vararg{CARS.Library, N} where N}"><code>combinedFit</code></a> uses several executions of <a href="../allfunctions/#CARS.blackBoxFit-Tuple{PreProcSpectrum, FitParams, FitParams, FitParams, Vararg{CARS.Library, N} where N}"><code>blackBoxFit</code></a> to provide a starting solution for <a href="../allfunctions/#CARS.gradientFit-Tuple{PreProcSpectrum, FitParams, FitParams, FitParams, Vararg{CARS.Library, N} where N}"><code>gradientFit</code></a>. This helps avoiding local minima.</li></ul><p>The syntax for all of these is quite similar, and differ only in the optional arguments. Check their documentation for details.</p><pre><code class="language-julia hljs">params=CARS.blackBoxFit(Is,startingsolution,lower,upper,lib1,lib2,options=BlackBoxOptions(MaxFuncEvals=5000),showplots=true)
+params=CARS.gradientFit(Is,startingsolution,lower,upper,lib1,lib2,options=IpoptOptions(print_level=5,max_wall_time=15),showplots=true);</code></pre><div class="admonition is-success"><header class="admonition-header">Tip</header><div class="admonition-body"><p>The key to accurate results when fitting single shots is to get the laser linewidths and frequency offset as accurately as possible from these fits. It is possible - however only acceptable when the conditions are well controlled and known - to fix the mole fractions and temperature for this fit to the known values to retrieve the instrumental parameters as close as possible.</p></div></div><p>As we know gained the relevant knowledge about our CARS instrument, we can specialize the libraries we generated to include the final laser linewidths and frequency offsets. We do so by creating a copy first and then fixing these values in the library:</p><pre><code class="language-julia hljs">lib1n = deepcopy(lib1)
+lib2n = deepcopy(lib2)
+simplifyLibrary!(params,lib1n,lib2n)</code></pre><p>Now we can start fitting the single shots and all other experimental data, were these instrumental parameters are applicable to. We again need to define a starting solution. This time, we have to use the results from the first fit, because the correct linewidths and frequency offset are set in this struct. If using another one, the fit might try to refit these parameters. So just use temperature, mole fractions and wavenumber shift:</p><pre><code class="language-julia hljs">startingsolution = deepcopy(params)
+# define upper and lower bounds
+lower=deepcopy(startingsolution);upper=deepcopy(startingsolution);
+lower.X[&quot;N2&quot;]=0.6
+upper.X[&quot;N2&quot;]=0.75
+lower.X[&quot;CO2&quot;]=0.0
+upper.X[&quot;CO2&quot;]=0.5
+lower.T = 300
+upper.T = 2400
+lower.WavenumberShift = -1
+upper.WavenumberShift = 1
+# throw off the starting solution for good measure
+startingsolution.T = 2000
+startingsolution.X[&quot;N2&quot;] = 0.7
+startingsolution.X[&quot;CO2&quot;] = 0.</code></pre><p>Now we can start fitting all spectra. The syntax is exactly the same as before. CARS.jl automatically detects the size of the input and uses multiple dispatch to fit the single shots when an array of <code>PreProcSpectrum</code> is passed as the first argument:</p><pre><code class="language-julia hljs">## BLACKBOX
+results=blackBoxFit(preprocessed_signals,startingsolution,lower,upper,lib1n,lib2n;showplots=true,options=BlackBoxOptions(MaxFuncEvals=10000));
+## GRADIENT
+results=gradientFit(preprocessed_signals,startingsolution,lower,upper,lib1n,lib2n;showplots=true,options=IpoptOptions(print_level=1,tol=1e-6,max_wall_time=2));
+## COMBINATION
+results=combinedFit(preprocessed_signals,startingsolution,lower,upper,lib1n,lib2n;showplots=true,ipoptopt=IpoptOptions(print_level=0,tol=1e-6,max_wall_time=2),blackboxopt=BlackBoxOptions(MaxFuncEvals=100));</code></pre><p>Typically, <code>combinedFit</code> will give the best results both in terms of runtime and accurarcy. Note, that <code>showplots=true</code> adds significant overhead to the runtime per spectrum. In many cases, plotting actually is slower than fitting.</p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../installation/">« Installation</a><a class="docs-footer-nextpage" href="../howto/">How to... »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.15 on <span class="colophon-date" title="Tuesday 8 August 2023 07:50">Tuesday 8 August 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
