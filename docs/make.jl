@@ -6,7 +6,7 @@ DocMeta.setdocmeta!(CARS, :DocTestSetup, :(using CARS); recursive=true)
 makedocs(;
     modules=[CARS],
     authors="Max Greifenstein, TU Darmstadt RSM",
-    repo="https://git.rwth-aachen.de/tuda_rsm/cross-sections/cars/CARS.jl/blob/{commit}{path}#{line}",
+    repo="https://github.com/tudarsm/CARS.jl/blob/{commit}{path}#{line}",
     sitename="CARS.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
