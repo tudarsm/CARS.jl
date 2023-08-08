@@ -10,7 +10,7 @@ makedocs(;
     sitename="CARS.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
-        canonical="https://tuda_rsm.pages.rwth-aachen.de/cross-sections/cars/jcars/cars.jl",
+        canonical="https://tudarsm.github.io/CARS.jl",
         assets=String[],
     ),
     pages=[
