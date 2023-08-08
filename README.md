@@ -21,7 +21,7 @@ CARS.jl is a library-based fitting algorithm for coherent anti-Stokes Raman spec
 ## What CARS.jl does not do
 - Generate theoretical susceptibilities. This has to be done using other packages such as DIACARS.jl. This modular structure allows to easily include additional species.
 
-## [Limitations](@id limitations)
+## [Limitations]
 - CARS.jl assumes independency of theoretical susceptibilities of the mole fractions of other species in the probe volume. This implies that foreign gas broadening is neglected. This is a common approximation and is e.g. also used by CARSFT
 - At present, only fitting at constant pressure are possible. Including pressure in the fit requires introducing pressure variations in the library, because it affects the underlying line shapes.
 - Single Pump CARS is not directly supported at the moment. Simply pass the same library twice (as Single-Pump is actually a special case of Dual-Pump) to the fit/simulation to workaround this limitation. This is likely to be resolved in a future version but does not have the highest priority.
