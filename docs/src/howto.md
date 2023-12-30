@@ -6,7 +6,8 @@ CurrentModule = CARS
 This section gives hints for developers on how to extend functionality to CARS.jl and how to perform typical tasks
 
 ## ... cite CARS.jl
-Currently, the publication is in submission process. Stay tuned for a bibtex key here.
+You can cite [this](https://doi.org/10.1002/jrs.6639) publication which describes the method.
+
 ## ... contribute to CARS.jl
 - Clone the repository
 - Open the root folder (the one containing `src/`) in VS Code with the Julia extension installed
