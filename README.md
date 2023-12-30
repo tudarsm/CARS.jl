@@ -1,6 +1,7 @@
 # CARS.jl
 Welcome. This is [CARS.jl](https://github.com/tudarsm/cars.jl).
-If you haven't read the publication yet, please do so. It will answer many of the questions that you may have about what this code does and why.
+If you haven't read the publication yet, please do so. It will answer many of the questions that you may have about what this code does and why:
+https://doi.org/10.1002/jrs.6639
 
 ## What is CARS.jl?
 CARS.jl is a library-based fitting algorithm for coherent anti-Stokes Raman spectra that features:
